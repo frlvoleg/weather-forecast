@@ -1,4 +1,4 @@
-import WeatherData from './weather-data/WeatherData'
+import CurrentLocationFiveDays from './current-location-five-days/CurrentLocationFiveDays'
 
 import './App.css'
 
@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <WeatherData/>
+      <CurrentLocationFiveDays/>
     </>
   )
 }
