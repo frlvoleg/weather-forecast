@@ -40,17 +40,31 @@ export default function FiveDays() {
         return <div>Loading...</div>;
     }
 
-  return (
-      <div>
-          <SearchForLocation searchCity={city} onChangeSearch={handleSubmit} setSearchedCity={setCity}/>
-          <h2>{city}</h2>
-          <ul>
-              {
-                  cards.list.map((day) =>
-                      <li key={day.dt}>{day.dt_txt} - Temperature {day.main.temp}°C</li>
-                )
-              }
-       </ul>
+    const sortDays = cards.list.reduce((acc, day) => {
+        const date = day.dt_txt.split(' ')[0];
+        if (!acc[date]) {
+            acc[date] = [];
+        }
+        acc[date].push({ dt_txt: day.dt_txt, temp: day.main.temp });
+        return acc;
+    },{})
+
+return (
+    <div>
+        <SearchForLocation searchCity={city} onChangeSearch={handleSubmit} setSearchedCity={setCity}/>
+        <h2>{city}</h2>
+            {
+            Object.keys(sortDays).map((date) => (
+                <div className="day" key={date}>
+                    <h3>{date}</h3>
+                    {sortDays[date].map((detail, index) => (
+                        <div key={index}>
+                            {detail.dt_txt} - Temperature {detail.temp}°C
+                        </div>
+                    ))}
+            </div>
+        ))
+            }
     </div>
-  )
+)
 }
