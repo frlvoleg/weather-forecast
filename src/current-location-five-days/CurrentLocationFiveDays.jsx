@@ -6,7 +6,7 @@ export default function FiveDays() {
     const [cards, setCards] = useState(null);
     const [city, setCity] = useState('');
 
-    const API_KEY = 'af75452408ee4c5895e11d2b1eef7026';
+    const API_KEY = '';
 
     useEffect(() =>{
         navigator.geolocation.getCurrentPosition(async (position) => {
